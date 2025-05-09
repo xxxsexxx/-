@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СТАТЬ БАСИСТОМ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', sans-serif;
+            background-color: #000;
+            color: #e0e0e0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            border: 1px solid #0ff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            letter-spacing: 5px;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px #0ff;
+        }
+
+        .neon-btn {
+            position: relative;
+            display: inline-block;
+            padding: 18px 50px;
+            margin: 20px 0;
+            color: #0ff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            overflow: hidden;
+            transition: 0.5s;
+            border: 3px solid #0ff;
+            border-radius: 0;
+            background: transparent;
+            cursor: pointer;
+            box-shadow: 0 0 15px #0ff, 0 0 30px transparent;
+        }
+
+        .neon-btn:hover {
+            background: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 25px #0ff, 0 0 50px #0ff;
+        }
+
+        .neon-btn:disabled {
+            color: #0ff;
+            background: transparent;
+            box-shadow: 0 0 15px #0ff;
+            cursor: not-allowed;
+        }
+
+        .neon-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #0ff, transparent);
+            margin: 40px 0;
+            box-shadow: 0 0 10px #0ff;
+        }
+
+        .neon-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #0ff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
+            animation: flicker 3s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+            }
+            20%, 22%, 24%, 55% {
+                opacity: 0.3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ПОСВЯЩЕНИЕ В БАСИСТЫ</h1>
+        
+        <div class="neon-line"></div>
+        
+        <p>Прежде чем нажать на кнопку, хорошо подумай, ведь.. </p>
+        
+        <button class="neon-btn" id="bass-btn">СТАТЬ БАСИСТКОЙ 😈</button>
+        
+        <div class="neon-line"></div>
+    </div>
+
+    <!-- Неоновые точки -->
+    <div class="neon-dot" style="top: 15%; left: 20%;"></div>
+    <div class="neon-dot" style="bottom: 25%; right: 15%;"></div>
+    <div class="neon-dot" style="top: 30%; right: 25%;"></div>
+    <div class="neon-dot" style="bottom: 15%; left: 30%;"></div>
+
+    <!-- Аудио -->
+    <audio id="bass-audio" loop>
+        <source src="your-music-file.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
+    <script>
+        const bassBtn = document.getElementById('bass-btn');
+        const bassAudio = document.getElementById('bass-audio');
+        
+        // Инициализация аудио при первом клике по странице
+        document.addEventListener('click', function initAudio() {
+            // Небольшая задержка для надежности
+            setTimeout(() => {
+                bassAudio.volume = 0.7;
+                bassAudio.play().catch(e => console.error("Ошибка воспроизведения:", e));
+            }, 300);
+            
+            // Удаляем обработчик после первого клика
+            document.removeEventListener('click', initAudio);
+        }, { once: true });
+
+        // Обработчик кнопки
+        bassBtn.addEventListener('click', function() {
+            bassAudio.play()
+                .then(() => {
+                    bassBtn.textContent = "Через полчаса к вам постучаться в двер и выдадут бас гитару :)";
+                    bassBtn.disabled = true;
+                    bassBtn.style.boxShadow = '0 0 25px #f0f, 0 0 50px #f0f';
+                    bassBtn.style.borderColor = '#f0f';
+                })
+                .catch(e => {
+                    alert("Нажмите на страницу, затем на кнопку, чтобы включить звук");
+                    console.error("Ошибка:", e);
+                });
+        });
+    </script>
+</body>
+</html>
