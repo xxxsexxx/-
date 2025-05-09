@@ -112,20 +112,18 @@
         
         <div class="neon-line"></div>
         
-        <p>Прежде чем нажать на кнопку, хорошо подумай, ведь.. Хотя, забей ) </p>
+        <p>Прежде чем нажать на кнопку, хорошо подумай, ведь.. А хотя, знаешь, забей ) </p>
         
         <button class="neon-btn" id="bass-btn">СТАТЬ БАСИСТКОЙ 😈</button>
         
         <div class="neon-line"></div>
     </div>
 
-    <!-- Неоновые точки -->
+    
     <div class="neon-dot" style="top: 15%; left: 20%;"></div>
     <div class="neon-dot" style="bottom: 25%; right: 15%;"></div>
     <div class="neon-dot" style="top: 30%; right: 25%;"></div>
-    <div class="neon-dot" style="bottom: 15%; left: 30%;"></div>
-
-    <!-- Аудио -->
+    <div class="neon-dot" style="bottom: 15%; left: 30%;"></di
     <audio id="bass-audio" loop>
         <source src="your-music-file.mp3" type="audio/mpeg">
         Ваш браузер не поддерживает аудио элемент.
@@ -135,7 +133,6 @@
         const bassBtn = document.getElementById('bass-btn');
         const bassAudio = document.getElementById('bass-audio');
         
-        // Инициализация аудио при первом клике по странице
         document.addEventListener('click', function initAudio() {
             // Небольшая задержка для надежности
             setTimeout(() => {
@@ -143,7 +140,7 @@
                 bassAudio.play().catch(e => console.error("Ошибка воспроизведения:", e));
             }, 300);
             
-            // Удаляем обработчик после первого клика
+            
             document.removeEventListener('click', initAudio);
         }, { once: true });
 
@@ -151,7 +148,7 @@
         bassBtn.addEventListener('click', function() {
             bassAudio.play()
                 .then(() => {
-                    bassBtn.textContent = "Через полчаса к вам постучаться в дверь и выдадут бас гитару :)";
+                    bassBtn.textContent = "Через полчаса к тебе постучаться в дверь и выдадут личную бас гитару :)";
                     bassBtn.disabled = true;
                     bassBtn.style.boxShadow = '0 0 25px #f0f, 0 0 50px #f0f';
                     bassBtn.style.borderColor = '#f0f';
